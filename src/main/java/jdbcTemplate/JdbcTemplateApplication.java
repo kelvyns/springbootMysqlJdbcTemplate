@@ -2,7 +2,6 @@ package jdbcTemplate;
 
 import javax.sql.DataSource;
 
-import org.junit.Assert;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
@@ -47,8 +46,8 @@ public class JdbcTemplateApplication {
 		
 		BookingService bookingService = ctx.getBean(BookingService.class);
 		bookingService.book("Alice", "Bob", "Carol");
-		Assert.assertEquals("First booking should work with no problem", 3,
-				bookingService.findAllBookings().size());
+//		Assert.assertEquals("First booking should work with no problem", 3,
+//				bookingService.findAllBookings().size());
 
 		try {
 			bookingService.book("Chris", "Samuel");
@@ -62,8 +61,8 @@ public class JdbcTemplateApplication {
 			log.info("So far, " + person + " is booked.");
 		}
 		log.info("You shouldn't see Chris or Samuel. Samuel violated DB constraints, and Chris was rolled back in the same TX");
-		Assert.assertEquals("'Samuel' should have triggered a rollback", 3,
-				bookingService.findAllBookings().size());
+//		Assert.assertEquals("'Samuel' should have triggered a rollback", 3,
+//				bookingService.findAllBookings().size());
 
 		try {
 			bookingService.book("Buddy", null);
@@ -77,8 +76,8 @@ public class JdbcTemplateApplication {
 			log.info("So far, " + person + " is booked.");
 		}
 		log.info("You shouldn't see Buddy or null. null violated DB constraints, and Buddy was rolled back in the same TX");
-		Assert.assertEquals("'null' should have triggered a rollback", 3, bookingService
-				.findAllBookings().size());
+//		Assert.assertEquals("'null' should have triggered a rollback", 3, bookingService
+//				.findAllBookings().size());
 		
 		
 	}
